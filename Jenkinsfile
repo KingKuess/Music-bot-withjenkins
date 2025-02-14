@@ -17,7 +17,7 @@ pipeline {
         stage('Run') {
             steps {
                 withCredentials([string(credentialsId: 'token', variable: 'token')]) {
-                    sh 'sudo docker run --restart=always --name music-bot-' + env.BRANCH_NAME + ' -e DISCORD_TOKEN=$token -e GUILD_ID=$GUILD -d music-bot'
+                    sh 'sudo docker run --restart=always --name music-bot-' + env.BRANCH_NAME + ' -e DISCORD_TOKEN=$discord_token -e GUILD_ID=$guild -d music-bot'
                 }
             }
         }
