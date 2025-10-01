@@ -20,8 +20,6 @@ client.config = require('./config');
 const player = new Player(client, client.config.opt.discordPlayer);
 // Register the new Youtubei extractor
 player.extractors.register(YouTubeExtractor, {});
-player.extractors.register(SpotifyExtractor, {});
-player.extractors.register(SoundCloudExtractor, {});
 
 console.clear();
 require('./loader');
