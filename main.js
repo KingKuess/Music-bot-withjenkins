@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { Player } = require('discord-player');
 const { Client, GatewayIntentBits } = require('discord.js');
-const { YoutubeiExtractor } = require('discord-player-youtubei'); // Import the new extractor
+const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor } = require("@discord-player/extractor");
 
 global.client = new Client({
     intents: [
@@ -19,7 +19,9 @@ client.config = require('./config');
 
 const player = new Player(client, client.config.opt.discordPlayer);
 // Register the new Youtubei extractor
-player.extractors.register(YoutubeiExtractor, {});
+player.extractors.register(YouTubeExtractor, {});
+player.extractors.register(SpotifyExtractor, {});
+player.extractors.register(SoundCloudExtractor, {});
 
 console.clear();
 require('./loader');
