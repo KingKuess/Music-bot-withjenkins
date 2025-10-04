@@ -19,7 +19,10 @@ client.config = require('./config');
 
 const player = new Player(client, client.config.opt.discordPlayer);
 // Register the new Youtubei extractor
-player.extractors.register(YoutubeiExtractor, {});
+player.extractors.register(YoutubeiExtractor, {
+  innertubeConfigRaw: {
+    player_id: '0004de42'
+  });
 
 console.clear();
 require('./loader');
