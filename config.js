@@ -39,6 +39,10 @@ module.exports = {
                 quality: 'highestaudio',
                 highWaterMark: 1 << 25
             }
+        },
+        spotify: {
+            clientId: process.env.SPOTIFY_CLIENT_ID || '',
+            clientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
         }
     }
 };

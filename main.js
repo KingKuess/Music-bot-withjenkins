@@ -3,6 +3,7 @@ require('dotenv').config();
 const { Player } = require('discord-player');
 const { Client, GatewayIntentBits } = require('discord.js');
 const { YoutubeiExtractor } = require("discord-player-youtubei");
+const { SpotifyExtractor, SoundCloudExtractor } = require("@discord-player/extractor");
 
 global.client = new Client({
     intents: [
@@ -18,11 +19,19 @@ global.client = new Client({
 client.config = require('./config');
 
 const player = new Player(client, client.config.opt.discordPlayer);
-// Register the new Youtubei extractor
-player.extractors.register(YoutubeiExtractor, {
-  innertubeConfigRaw: {
-    player_id: '0004de42'
-  });
+
+(async () => {
+    await player.extractors.register(YoutubeiExtractor, {
+        innertubeConfigRaw: {
+            player_id: '0004de42'
+        }
+    });
+
+    await player.extractors.register(SpotifyExtractor, client.config.opt.spotify || {});
+    await player.extractors.register(SoundCloudExtractor, {});
+
+    console.log('Extractors loaded: YouTube, Spotify, SoundCloud');
+})();
 
 console.clear();
 require('./loader');
